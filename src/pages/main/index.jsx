@@ -71,15 +71,6 @@ class Main extends Component {
     console.log(`handleMapClick \n Lat: ${latitude} \n Long: ${longitude}`);
     this.selectedPosition = { latitude, longitude };
     this.isModalOpen = true;
-
-    // this.user = {
-    // id: 764243,
-    // name: 'Guilherme Fiuza',
-    // username: 'fiuzagr',
-    // position: { latitude, longitude },
-    // };
-
-    // console.log(this.state.users);
   }
 
   handleAddUser = (e) => {
