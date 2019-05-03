@@ -1,5 +1,8 @@
 // vendors
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+
+// locals
+import MapBox from '../../components/map';
 
 class Main extends Component {
   state = {
@@ -8,9 +11,9 @@ class Main extends Component {
 
   render() {
     return (
-      <div>
-        {this.state.users}
-      </div>
+      <Fragment>
+        <MapBox />
+      </Fragment>
     );
   }
 }
