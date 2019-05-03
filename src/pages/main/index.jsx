@@ -62,6 +62,11 @@ class Main extends Component {
     return this.state.isModalOpen;
   }
 
+  clear = () => {
+    this.usernameInput = '';
+    this.isModalOpen = false;
+  }
+
   handleMapClick = (latitude, longitude) => {
     console.log(`handleMapClick \n Lat: ${latitude} \n Long: ${longitude}`);
     this.selectedPosition = { latitude, longitude };
@@ -79,8 +84,8 @@ class Main extends Component {
 
   handleAddUser = (e) => {
     e.preventDefault();
-    console.log(this.usernameInput, this.selectedPosition);
     this.props.addUserRequest(this.usernameInput, this.selectedPosition);
+    this.clear();
   }
 
   render() {

@@ -10,19 +10,20 @@ export const Types = {
 const initialState = {
   loading: false,
   error: null,
-  data: [{
-    id: 398909,
-    name: 'Raphael Lopes',
-    username: 'raphaellopes',
-    position: {
-      latitude: -23.5439948,
-      longitude: -46.6065452,
-    },
-  }],
+  data: [],
 };
 
 export default function users(state = initialState, action) {
   switch (action.type) {
+    case Types.ADD_USER_SUCCESS:
+      return {
+        ...state,
+        data: [
+          ...state.data,
+          action.payload.data,
+        ],
+      };
+
     default:
       return state;
   }

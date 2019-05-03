@@ -13,10 +13,10 @@ export function* addUser(action) {
       id: data.id,
       name: data.name,
       username: data.login,
-      position: action.position,
+      position: action.payload.position,
     };
 
-    yield put(UserActions.addUserSucess(userData));
+    yield put(UserActions.addUserSuccess(userData));
   } catch (err) {
     yield put(UserActions.addUserError('Erro ao adicionar usuário!'));
   }
