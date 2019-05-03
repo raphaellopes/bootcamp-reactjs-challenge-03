@@ -1,9 +1,15 @@
 // vendor
-import React from 'react';
+import React, { Fragment } from 'react';
 
 // local
 import Main from '../../pages/main';
+import GlobalStyle from '../../styles/global';
 
-const App = () => <Main />;
+const App = () => (
+  <Fragment>
+    <GlobalStyle />
+    <Main />
+  </Fragment>
+);
 
 export default App;
