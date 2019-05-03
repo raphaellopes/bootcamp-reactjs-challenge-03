@@ -1,5 +1,9 @@
+// vendor
 import React from 'react';
 
-const App = () => <h1>Starting the project</h1>;
+// local
+import Main from '../../pages/main';
+
+const App = () => <Main />;
 
 export default App;
