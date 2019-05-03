@@ -58,7 +58,6 @@ export default class MapBox extends Component {
   }
 
   render() {
-    console.log('>>>', this.props.users);
     return (
       <MapGl
         {...this.state.viewport}
