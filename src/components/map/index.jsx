@@ -1,5 +1,8 @@
 // vendor
 import React, { Component } from 'react';
+import {
+  func, arrayOf, shape, number, string,
+} from 'prop-types';
 import MapGl, { Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -7,6 +10,19 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import mapboxConfig from '../../config/mapbox';
 
 export default class MapBox extends Component {
+  static propTypes = {
+    users: arrayOf(shape({
+      id: number.isRequired,
+      name: string.isRequired,
+      username: string.isRequired,
+      position: shape({
+        latitude: number.isRequired,
+        longitude: number.isRequired,
+      }),
+    })),
+    onMapClick: func.isRequired,
+  }
+
   state = {
     viewport: {
       width: window.innerWidth,
@@ -36,12 +52,13 @@ export default class MapBox extends Component {
     });
   }
 
-  handleMapClick(e) {
-    const [latitude, longitude] = e.lngLat;
-    alert(`Lat: ${latitude} \nLong: ${longitude}`);
+  handleMapClick = (e) => {
+    const [longitude, latitude] = e.lngLat;
+    this.props.onMapClick(latitude, longitude);
   }
 
   render() {
+    console.log('>>>', this.props.users);
     return (
       <MapGl
         {...this.state.viewport}
@@ -50,22 +67,25 @@ export default class MapBox extends Component {
         mapboxApiAccessToken={mapboxConfig.accessToken}
         onViewportChange={viewport => this.setState({ viewport })}
       >
-        <Marker
-          latitude={-23.5439948}
-          longitude={-46.6065452}
-          onClick={this.handleMapClick}
-          captureClick
-        >
-          <img
-            style={{
-              borderRadius: 100,
-              width: 48,
-              height: 48,
-            }}
-            src="https://avatars2.githubusercontent.com/u/2254731?v=4"
-            alt=""
-          />
-        </Marker>
+        {this.props.users.map(user => (
+          <Marker
+            key={user.id}
+            latitude={user.position.latitude}
+            longitude={user.position.longitude}
+            onClick={this.handleMapClick}
+            captureClick
+          >
+            <img
+              style={{
+                borderRadius: 100,
+                width: 48,
+                height: 48,
+              }}
+              src={`https://avatars2.githubusercontent.com/u/${user.id}?v=4`}
+              alt=""
+            />
+          </Marker>
+        ))}
       </MapGl>
     );
   }
