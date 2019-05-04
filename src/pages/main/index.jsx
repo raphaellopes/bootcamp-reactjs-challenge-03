@@ -9,6 +9,7 @@ import { bindActionCreators } from 'redux';
 // locals
 import { Creators as UserActions } from '../../store/ducks/users';
 import MapBox from '../../components/map';
+import Modal from '../../components/modal';
 
 class Main extends Component {
   static propTypes = {
@@ -79,10 +80,9 @@ class Main extends Component {
     this.clear();
   }
 
-  render() {
-    return (
-      <Fragment>
-        {this.isModalOpen && (
+  renderModal() {
+    return this.isModalOpen && (
+      <Modal>
         <form onSubmit={this.handleAddUser}>
           <input
             placeholder="Digite o username do usuário"
@@ -93,11 +93,18 @@ class Main extends Component {
             salvar
           </button>
         </form>
-        )}
+      </Modal>
+    );
+  }
+
+  render() {
+    return (
+      <Fragment>
         <MapBox
           users={this.users}
           onMapClick={this.handleMapClick}
         />
+        {this.renderModal()}
       </Fragment>
     );
   }
