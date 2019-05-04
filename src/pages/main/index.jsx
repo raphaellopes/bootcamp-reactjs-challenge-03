@@ -38,6 +38,16 @@ class Main extends Component {
     selectedPosition: null,
   }
 
+  // lifecicle
+  componentDidUpdate(prevProps) {
+    if (prevProps.users.loading !== this.isLoading) {
+      if (!this.isLoading) {
+        this.clear();
+      }
+    }
+  }
+
+  // getters and setters
   get users() {
     return this.props.users.data;
   }
@@ -66,6 +76,10 @@ class Main extends Component {
     return this.state.isModalOpen;
   }
 
+  get isLoading() {
+    return this.props.users.loading;
+  }
+
   clear = () => {
     this.usernameInput = '';
     this.isModalOpen = false;
@@ -80,10 +94,12 @@ class Main extends Component {
   handleAddUser = (e) => {
     e.preventDefault();
     this.props.addUserRequest(this.usernameInput, this.selectedPosition);
-    this.clear();
+    // this.clear();
   }
 
   renderModal() {
+    const spinner = <i className="fa fa-spinner fa-pulse" />;
+
     return this.isModalOpen && (
       <Modal>
         <Form onSubmit={this.handleAddUser}>
@@ -106,7 +122,7 @@ class Main extends Component {
               cancelar
             </Button>
             <Button type="submit">
-              salvar
+              {this.isLoading ? spinner : 'salvar'}
             </Button>
           </ButtonWrapper>
         </Form>
