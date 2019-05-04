@@ -1,4 +1,8 @@
+// vendors
 import { createGlobalStyle } from 'styled-components';
+
+// locals
+import { fontSizes } from './variables';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -10,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: sans-serif;
+    font-size: ${fontSizes.base};
     background: #FFF;
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;

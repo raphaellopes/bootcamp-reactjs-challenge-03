@@ -11,6 +11,8 @@ import { Creators as UserActions } from '../../store/ducks/users';
 import MapBox from '../../components/map';
 import Modal from '../../components/modal';
 import Input from '../../components/input';
+import Button from '../../components/button';
+import { ButtonWrapper, Form } from './styles';
 
 class Main extends Component {
   static propTypes = {
@@ -84,16 +86,30 @@ class Main extends Component {
   renderModal() {
     return this.isModalOpen && (
       <Modal>
-        <form onSubmit={this.handleAddUser}>
+        <Form onSubmit={this.handleAddUser}>
+          <h1>
+            Adicionar novo usuário
+          </h1>
           <Input
-            placeholder="Digite o username do usuário"
+            placeholder="Usuário no Github"
             value={this.usernameInput}
             onChange={e => this.usernameInput = e.target.value}
           />
-          <button type="submit">
-            salvar
-          </button>
-        </form>
+          <ButtonWrapper>
+            <Button
+              type="button"
+              color="neutralMid"
+              onClick={() => {
+                this.isModalOpen = false;
+              }}
+            >
+              cancelar
+            </Button>
+            <Button type="submit">
+              salvar
+            </Button>
+          </ButtonWrapper>
+        </Form>
       </Modal>
     );
   }
