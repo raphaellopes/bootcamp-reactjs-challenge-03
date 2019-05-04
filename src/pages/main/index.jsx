@@ -10,6 +10,7 @@ import { bindActionCreators } from 'redux';
 import { Creators as UserActions } from '../../store/ducks/users';
 import MapBox from '../../components/map';
 import Modal from '../../components/modal';
+import Input from '../../components/input';
 
 class Main extends Component {
   static propTypes = {
@@ -84,7 +85,7 @@ class Main extends Component {
     return this.isModalOpen && (
       <Modal>
         <form onSubmit={this.handleAddUser}>
-          <input
+          <Input
             placeholder="Digite o username do usuário"
             value={this.usernameInput}
             onChange={e => this.usernameInput = e.target.value}
