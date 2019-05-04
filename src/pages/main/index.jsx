@@ -5,6 +5,8 @@ import {
 } from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // locals
 import { Creators as UserActions } from '../../store/ducks/users';
@@ -42,7 +44,12 @@ class Main extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.users.loading !== this.isLoading) {
       if (!this.isLoading) {
-        this.clear();
+        if (this.error) {
+          toast.error(this.error);
+        } else {
+          this.clear();
+          toast.success('Usuário cadastrado com sucuesso');
+        }
       }
     }
   }
@@ -80,6 +87,10 @@ class Main extends Component {
     return this.props.users.loading;
   }
 
+  get error() {
+    return this.props.users.error;
+  }
+
   clear = () => {
     this.usernameInput = '';
     this.isModalOpen = false;
@@ -102,7 +113,7 @@ class Main extends Component {
 
     return this.isModalOpen && (
       <Modal>
-        <Form onSubmit={this.handleAddUser}>
+        <Form withError={this.error} onSubmit={this.handleAddUser}>
           <h1>
             Adicionar novo usuário
           </h1>
@@ -138,6 +149,7 @@ class Main extends Component {
           onMapClick={this.handleMapClick}
         />
         {this.renderModal()}
+        <ToastContainer />
       </Fragment>
     );
   }

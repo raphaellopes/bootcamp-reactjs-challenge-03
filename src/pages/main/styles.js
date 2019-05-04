@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 // locals
-import { fontSizes } from '../../styles/variables';
+import { fontSizes, colors } from '../../styles/variables';
 
 export const ButtonWrapper = styled.div`
   display: flex;
@@ -28,5 +28,9 @@ export const Form = styled.form`
     text-align: center;
     font-size: ${fontSizes.base};
     margin-bottom: 15px;
+  }
+
+  input {
+    border-color: ${props => props.withError && colors.error};
   }
 `;
