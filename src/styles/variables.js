@@ -1,7 +1,8 @@
 export const colors = {
   primary: '#85c47c',
   error: '#ff0000',
-  neutralDark: '#393939',
+  neutralDarkest: '#393939',
+  neutralDark: '#807e7f',
   neutralMid: '#cccccc',
   neutralLight: '#eeeeee',
   neutralLightest: '#ffffff',
@@ -13,4 +14,7 @@ export const fontSizes = {
   small: '12px',
   base: '16px',
   large: '18px',
+  larger: '20px',
 };
+
+export const baseSpace = '15px;';

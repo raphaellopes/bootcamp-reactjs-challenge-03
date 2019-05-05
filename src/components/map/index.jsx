@@ -7,6 +7,7 @@ import MapGl, { Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 // locals
+import Avatar from '../avatar';
 import mapboxConfig from '../../config/mapbox';
 
 export default class MapBox extends Component {
@@ -74,14 +75,9 @@ export default class MapBox extends Component {
             onClick={this.handleMapClick}
             captureClick
           >
-            <img
-              style={{
-                borderRadius: 100,
-                width: 48,
-                height: 48,
-              }}
-              src={`https://avatars2.githubusercontent.com/u/${user.id}?v=4`}
-              alt=""
+            <Avatar
+              userId={user.id}
+              alt={user.name}
             />
           </Marker>
         ))}

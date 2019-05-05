@@ -7,7 +7,7 @@ export const Backdrop = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 2;
+  z-index: 4;
 `;
 
 export const Content = styled.div`
@@ -16,7 +16,7 @@ export const Content = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 3;
+  z-index: 5;
   padding: 15px;
   border-radius: 5px;
 `;

@@ -14,6 +14,9 @@ import MapBox from '../../components/map';
 import Modal from '../../components/modal';
 import Input from '../../components/input';
 import Button from '../../components/button';
+import Aside from '../../components/aside';
+import Icon from '../../components/icon';
+
 import { ButtonWrapper, Form } from './styles';
 
 class Main extends Component {
@@ -108,8 +111,14 @@ class Main extends Component {
     // this.clear();
   }
 
+  renderAside() {
+    return (
+      <Aside>My aside component rendered</Aside>
+    );
+  }
+
   renderModal() {
-    const spinner = <i className="fa fa-spinner fa-pulse" />;
+    const spinner = <Icon name="spinner fa-pulse" />;
 
     return this.isModalOpen && (
       <Modal>
@@ -144,6 +153,7 @@ class Main extends Component {
   render() {
     return (
       <Fragment>
+        {this.renderAside()}
         <MapBox
           users={this.users}
           onMapClick={this.handleMapClick}
