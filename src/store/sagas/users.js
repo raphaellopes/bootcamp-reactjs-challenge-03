@@ -16,6 +16,7 @@ export function* addUser(action) {
         id: data.id,
         name: data.name,
         username: data.login,
+        avatar_url: data.avatar_url,
         position: action.payload.position,
       };
 

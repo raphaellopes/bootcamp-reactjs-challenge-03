@@ -94,14 +94,14 @@ class Aside extends Component {
   }
 
   renderModal() {
-    const { id, name } = this.selectedUser;
+    const { name, avatar_url: image } = this.selectedUser;
 
     return (
       <Modal title="Atenção">
         <AlertResume>
           <p>
             Você tem certeza que deseja excluir esse usuário? <br />
-            <Avatar userId={id} alt={name} /> <br />
+            <Avatar src={image} alt={name} /> <br />
             <strong>{name}</strong>
           </p>
         </AlertResume>
@@ -115,7 +115,7 @@ class Aside extends Component {
       <UsersList>
         {this.users.map(user => (
           <li key={user.id} className="user-item">
-            <Avatar className="user-img" userId={user.id} alt={user.name} />
+            <Avatar className="user-img" src={user.avatar_url} alt={user.name} />
             <p className="user-info">
               <strong>{user.name}</strong>
               <small className="user-username">{user.username}</small>

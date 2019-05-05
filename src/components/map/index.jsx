@@ -76,7 +76,7 @@ export default class MapBox extends Component {
             captureClick
           >
             <Avatar
-              userId={user.id}
+              src={user.avatar_url}
               withBorder
               alt={user.name}
             />
