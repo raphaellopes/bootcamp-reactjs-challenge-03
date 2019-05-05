@@ -39,6 +39,10 @@ export const UsersList = styled.ul`
     align-items: center;
     border-bottom: 1px solid ${colors.neutralLight};
     padding: ${baseSpace} 0;
+
+    &:last-child {
+      border: 0;
+    }
   }
 
   .user-info {

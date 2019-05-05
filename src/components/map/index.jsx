@@ -77,6 +77,7 @@ export default class MapBox extends Component {
           >
             <Avatar
               userId={user.id}
+              withBorder
               alt={user.name}
             />
           </Marker>

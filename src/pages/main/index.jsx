@@ -39,6 +39,7 @@ class Main extends Component {
   }
 
   state = {
+    error: false,
     usernameInput: '',
     isModalOpen: false,
     selectedPosition: null,
@@ -92,30 +93,59 @@ class Main extends Component {
   }
 
   get error() {
-    return this.props.users.error;
+    return this.props.users.error || this.state.error;
   }
 
+  set error(error) {
+    this.setState({ error });
+  }
+
+  // handlers
   clear = () => {
     this.usernameInput = '';
     this.isModalOpen = false;
   }
 
   handleMapClick = (latitude, longitude) => {
-    console.log(`handleMapClick \n Lat: ${latitude} \n Long: ${longitude}`);
     this.selectedPosition = { latitude, longitude };
     this.isModalOpen = true;
   }
 
   handleAddUser = (e) => {
     e.preventDefault();
-    this.props.addUserRequest(this.usernameInput, this.selectedPosition);
-    // this.clear();
+    if (this.users.find(user => user.username === this.usernameInput)) {
+      this.error = true;
+      toast.error('Usuário já adicionado à lista');
+    } else {
+      this.error = false;
+      this.props.addUserRequest(this.usernameInput, this.selectedPosition);
+    }
+  }
+
+  // renders
+  renderModalButtons() {
+    const spinner = <Icon name="spinner fa-pulse" />;
+
+    return (
+      <ButtonWrapper>
+        <Button
+          type="button"
+          color="neutralMid"
+          onClick={() => {
+            this.isModalOpen = false;
+          }}
+        >
+              cancelar
+        </Button>
+        <Button type="submit">
+          {this.isLoading ? spinner : 'salvar'}
+        </Button>
+      </ButtonWrapper>
+    );
   }
 
   renderModal() {
-    const spinner = <Icon name="spinner fa-pulse" />;
-
-    return this.isModalOpen && (
+    return (
       <Modal title="Adicionar novo usuário">
         <Form withError={this.error} onSubmit={this.handleAddUser}>
           <Input
@@ -123,20 +153,7 @@ class Main extends Component {
             value={this.usernameInput}
             onChange={e => this.usernameInput = e.target.value}
           />
-          <ButtonWrapper>
-            <Button
-              type="button"
-              color="neutralMid"
-              onClick={() => {
-                this.isModalOpen = false;
-              }}
-            >
-              cancelar
-            </Button>
-            <Button type="submit">
-              {this.isLoading ? spinner : 'salvar'}
-            </Button>
-          </ButtonWrapper>
+          {this.renderModalButtons()}
         </Form>
       </Modal>
     );
@@ -145,12 +162,12 @@ class Main extends Component {
   render() {
     return (
       <Fragment>
-        <Aside>My aside component rendered</Aside>
+        <Aside />
         <MapBox
           users={this.users}
           onMapClick={this.handleMapClick}
         />
-        {this.renderModal()}
+        {this.isModalOpen && this.renderModal()}
         <ToastContainer />
       </Fragment>
     );

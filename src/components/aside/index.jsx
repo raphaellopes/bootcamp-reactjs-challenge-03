@@ -68,6 +68,31 @@ class Aside extends Component {
   }
 
   // renders
+  renderModalButtons() {
+    return (
+      <ButtonWrapper>
+        <Button
+          type="button"
+          color="neutralMid"
+          onClick={() => {
+            this.isModalOpen = false;
+          }}
+        >
+          cancelar
+        </Button>
+        <Button onClick={() => {
+          this.props.removeUser(this.selectedUser.id);
+          this.selectedUser = null;
+          this.isModalOpen = false;
+          toast.success('Usuário removido com sucesso!');
+        }}
+        >
+          confirmar
+        </Button>
+      </ButtonWrapper>
+    );
+  }
+
   renderModal() {
     const { id, name } = this.selectedUser;
 
@@ -80,26 +105,7 @@ class Aside extends Component {
             <strong>{name}</strong>
           </p>
         </AlertResume>
-        <ButtonWrapper>
-          <Button
-            type="button"
-            color="neutralMid"
-            onClick={() => {
-              this.isModalOpen = false;
-            }}
-          >
-              cancelar
-          </Button>
-          <Button onClick={() => {
-            this.props.removeUser(id);
-            this.selectedUser = null;
-            this.isModalOpen = false;
-            toast.success('Usuário removido com sucesso!');
-          }}
-          >
-              confirmar
-          </Button>
-        </ButtonWrapper>
+        {this.renderModalButtons()}
       </Modal>
     );
   }
@@ -114,8 +120,15 @@ class Aside extends Component {
               <strong>{user.name}</strong>
               <small className="user-username">{user.username}</small>
             </p>
-            <Icon onClick={() => this.handleRemove(user)} name="times-circle" color="error" />
-            <Icon name="angle-right" color="neutralMid" />
+            <Icon
+              onClick={() => this.handleRemove(user)}
+              name="times-circle"
+              color="error"
+            />
+            <Icon
+              name="angle-right"
+              color="neutralMid"
+            />
           </li>
         ))}
       </UsersList>
