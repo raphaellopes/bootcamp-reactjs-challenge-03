@@ -6,7 +6,7 @@ de desenvolvedores. O usuário pode adicionar desenvolvedores ao mapa clicando
 sobre o mesmo e informando o username do Github do desenvolvedor, dessa forma,
 a aplicação capta os dados do dev via API e salva no estado do Redux.
 
-## Layout utilizado na aplicação:
+## Layout desta aplicação:
 
 ![Listagem](/assets/listagem.png)
 
