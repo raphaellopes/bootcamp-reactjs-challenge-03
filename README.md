@@ -1,4 +1,6 @@
-# Desafio 3
+# RocketSeat Bootcamp ReactJS
+
+## Desafio 3
 
 Neste desafio foi construido uma aplicação utilizando a biblioteca
 React Map GL da Uber. A aplicação se trata de um repositório de localização
