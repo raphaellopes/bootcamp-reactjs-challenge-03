@@ -1,4 +1,10 @@
+// vendors
 import styled from 'styled-components';
+
+// locals
+import {
+  colors, fontSizes, borderRadius, baseSpace,
+} from '../../styles/variables';
 
 export const Backdrop = styled.div`
   background: rgba(0, 0, 0, 0.3);
@@ -11,12 +17,18 @@ export const Backdrop = styled.div`
 `;
 
 export const Content = styled.div`
-  background: #fff;
+  background: ${colors.neutralLightest};
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 5;
-  padding: 15px;
-  border-radius: 5px;
+  padding: ${baseSpace};
+  border-radius: ${borderRadius};
+`;
+
+export const Title = styled.h1`
+  text-align: center;
+  font-size: ${fontSizes.base};
+  margin-bottom: ${baseSpace};
 `;

@@ -14,10 +14,11 @@ import MapBox from '../../components/map';
 import Modal from '../../components/modal';
 import Input from '../../components/input';
 import Button from '../../components/button';
+import ButtonWrapper from '../../components/button-wrapper';
 import Aside from '../../components/aside';
 import Icon from '../../components/icon';
 
-import { ButtonWrapper, Form } from './styles';
+import { Form } from './styles';
 
 class Main extends Component {
   static propTypes = {
@@ -111,21 +112,12 @@ class Main extends Component {
     // this.clear();
   }
 
-  renderAside() {
-    return (
-      <Aside>My aside component rendered</Aside>
-    );
-  }
-
   renderModal() {
     const spinner = <Icon name="spinner fa-pulse" />;
 
     return this.isModalOpen && (
-      <Modal>
+      <Modal title="Adicionar novo usuário">
         <Form withError={this.error} onSubmit={this.handleAddUser}>
-          <h1>
-            Adicionar novo usuário
-          </h1>
           <Input
             placeholder="Usuário no Github"
             value={this.usernameInput}
@@ -153,7 +145,7 @@ class Main extends Component {
   render() {
     return (
       <Fragment>
-        {this.renderAside()}
+        <Aside>My aside component rendered</Aside>
         <MapBox
           users={this.users}
           onMapClick={this.handleMapClick}

@@ -27,6 +27,7 @@ export const UsersList = styled.ul`
   i {
     margin-left: ${baseSpace};
     font-size: ${fontSizes.larger};
+    cursor: pointer;
   }
 
   .user-img {
@@ -49,4 +50,8 @@ export const UsersList = styled.ul`
   .user-username {
     color: ${colors.neutralDark};
   }
+`;
+
+export const AlertResume = styled.div`
+  text-align: center;
 `;
